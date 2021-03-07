@@ -131,10 +131,10 @@ let whiteChess;
 let blackHover;
 let whiteHover;
 (async ()=>{
-    blackChess = await loadImg('../imgs/img-3.png');
-    whiteChess = await loadImg('../imgs/img-4.png');
-    blackHover = await loadImg('../imgs/img-10.png');
-    whiteHover = await loadImg('../imgs/img-11.png');
+    blackChess = await loadImg('./imgs/img-3.png');
+    whiteChess = await loadImg('./imgs/img-4.png');
+    blackHover = await loadImg('./imgs/img-10.png');
+    whiteHover = await loadImg('./imgs/img-11.png');
 })();
 function renderCanvas(){
     const oldDom = chessBoardRoot.querySelector('div');

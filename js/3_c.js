@@ -25,14 +25,14 @@ chessBoardRoot.addEventListener('click',(e) => {
     position.value = gameData.nowPlayer;
     position.isHover = false;
     // 播放音效
-    playAudio('../audio/audio-4.mp3');
+    playAudio('./audio/audio-4.mp3');
     // 检查胜利
     gameData.chessArr.unshift(position);
     const isWin = checkWin(position.x,position.y);
     if(isWin) {
         console.log('胜利啦');
         gameData.gameOver = true;
-        playAudio('../audio/audio-2.mp3');
+        playAudio('./audio/audio-2.mp3');
         return;
     }
     // 下一个玩家
