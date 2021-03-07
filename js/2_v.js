@@ -89,7 +89,7 @@ function renderDom(){
     for(let i = 0; i< 15; i++) {
         for(let t = 0; t < 15; t++) {
             const position = gameData.chessboard[i][t];
-            if(position.value === -1 || position.value === 1) {
+            if((position.value === -1 || position.value === 1) && !position.isBacking) {
                 // 画棋子
                 const chess = document.createElement('div');
                 chess.style.width = '40px';
