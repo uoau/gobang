@@ -107,7 +107,7 @@ function renderDom(){
                 const hoverImg = document.createElement('div');
                 hoverImg.style.width = '40px';
                 hoverImg.style.height = '40px';
-                hoverImg.style.background = position.value === 1 ? 'url(./imgs/img-10.png)' : 'url(./imgs/img-11.png)';
+                hoverImg.style.background = gameData.nowPlayer === 1 ? 'url(./imgs/img-10.png)' : 'url(./imgs/img-11.png)';
                 hoverImg.style.backgroundSize = '100% 100%';
                 hoverImg.style.position = 'absolute';
                 hoverImg.style.left = `${20 + i * 40 - 20}px`;
