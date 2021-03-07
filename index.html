@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>golang</title>
+    <link href="./index.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <div class="game">
+        <!-- 玩家 -->
+        <div class="player player-1 active" id="player1">
+            <div class="avatar"><img src="imgs/img-6.png"></div>
+            <i class="chess-color"></i>
+            <p class="tip">轮到你啦</p>
+        </div>
+        <div class="player player-2" id="player2">
+            <div class="avatar"><img src="imgs/img-7.png"></div>
+            <i class="chess-color"></i>
+            <p class="tip">轮到你啦</p>
+        </div>
+        <!-- 棋盘 -->
+        <div class="chessboard-wrap">
+            <div class="chessboard" id="chessBoard"></div>
+        </div>
+        <!-- 控制栏 -->
+        <div class="control-bar">
+            <button id='btn1'><i>↔</i>切换成Dom</button>
+            <button id="btn2"><i>↔</i>切换成Canvas</button>
+            <button id="btn3"><i>←</i>悔棋</button>
+            <button id="btn4"><i>→</i>撤销悔棋</button>
+        </div>
+        <!-- 背景 -->
+        <div class="bg">
+            <div></div>
+        </div>
+        <!-- 胜利弹窗 -->
+        <div class="win-dialog" id="winDialog">
+            <div class="win-dialog__player">
+                <div class='p1'>
+                    <p style="width: 200px;">你还差得远呢！</p>
+                    <img src="imgs/img-6.png">
+                    <span></span>
+                </div>
+                <div class="p2">
+                    <p style="width: 120px;">就这？！</p>
+                    <img src="imgs/img-7.png">
+                    <span></span>
+                </div>
+            </div>
+            <div class="win-dialog__control">
+                <button id="restart"><i>∨</i>再比一局</button>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="./js/3_c.js"></script>
+</body>
+</html>

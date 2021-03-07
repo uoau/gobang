@@ -1,0 +1,306 @@
+body {
+    font: 14px/1.5 Alibaba Sans,-apple-system,BlinkMacSystemFont,Segoe UI,PingFang SC,Hiragino Sans GB,Microsoft YaHei,Helvetica Neue,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+button {
+    border: none;
+    background: none;
+    color: #fff;
+    font-size: 18px;
+    margin: 14px;
+    display: inline-flex;
+    align-items: center;
+    padding: 5px 10px;
+    border: 1px solid rgba(255, 255, 255, 0);
+    border-radius: 2px 2px 2px 8px;
+    transition: background .2s, border .2s;
+    cursor: pointer;
+    outline: none;
+    display: none;
+}
+button i {
+    display: inline-flex;
+    width: 24px;
+    height: 24px;
+    background: #fff;
+    color: #333;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    padding-bottom: 3px;
+    border-radius: 2px 2px 2px 8px;
+    font-weight: bold;
+    margin-right: 4px;
+}
+button:hover {
+    border: 1px solid #fff;
+    background: rgba(255, 255, 255, .05);
+}
+
+.game {
+    width: 100vw;
+    height: 100vh;
+    min-width: 1200px;
+    min-height: 600px;
+    position: relative;
+}
+/* 背景 */
+.bg {
+    width: 100%;
+    height: 100%;
+    perspective: 150;
+    -webkit-perspective: 150;
+    z-index: 0;
+    overflow: hidden;
+}
+.bg div {
+    width: 100%;
+    height: 100%;
+    transform: rotateX(5deg) scale(1.8) translate(0,-100px);
+    background: url(./imgs/img-2.jpg);
+}
+.bg div::after {
+    content: '';
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    transform: rotateX(5deg) scale(1.3) translate(0,-100px);
+    background-image: linear-gradient(0deg, rgba(0,0,0,.4), rgba(0,0,0,0) 40%);
+}
+
+/* 玩家 */
+.player {
+    position: absolute;
+    z-index: 10;
+    width: 80px;
+    height: 80px;
+}
+.player .avatar{
+    width: 80px;
+    height: 80px;
+    background: red;
+    border-radius: 50%;
+    border: 3px solid #fff;
+    overflow: hidden;
+    transform: scale(.8);
+}
+.player .avatar img {
+    width: 100%;
+    height: 100%;
+}
+.player .chess-color{
+    width: 30px;
+    height: 30px;
+    background: #222;
+    border-radius: 50%;
+    position: absolute;
+    right: -5px;
+    bottom: 0px;
+}
+.player .tip {
+    position: absolute;
+    top: -100px;
+    left: -20px;
+    font-size: 40px;
+    width: 200px;
+    color: #fff;
+    display: none;
+}
+.player.active .avatar {
+    box-shadow: 0 0 5px 5px rgba(255, 255, 255, .5);
+    transform: scale(1);
+}
+.player.active .tip {
+    /* display: flex; */
+}
+.player-1 {
+    left: -1100px;
+    bottom: -500px;
+    top: 0;
+    right: 0;
+    margin: auto;
+}
+.player-2 {
+    right: -900px;
+    top: -500px;
+    left: 0;
+    bottom: 0;
+    margin: auto;
+}
+.player-2 .chess-color {
+    background: #fff;
+}
+.player-2 .tip {
+    top: auto;
+    bottom: -100px;
+    right: -20px;
+    left: auto;
+    text-align: right;
+}
+
+/* 棋盘 */
+.chessboard-wrap {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 100px;
+    margin: auto;
+    perspective: 150;
+    -webkit-perspective: 150;
+    width: 600px;
+    height: 600px;
+    z-index: 10;
+}
+.chessboard-wrap::before {
+    content: '';
+    width: 100%;
+    position: absolute;
+    height: 34px;
+    background: #7a4d19;
+    display: inline-flex;
+    bottom: -44px;
+    transform: rotateX(-5deg) scaleX(1.173);
+    border-radius: 0 0 4px 4px;
+    z-index: 4;
+}
+.chessboard-wrap::after {
+    content: '';
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background: rgba(0,0,0,.6);
+    display: inline-flex;
+    bottom: -44px;
+    transform: rotateX(5deg) scale(1.01,.9) translate(8px, -16px);
+    border-radius: 0 0 4px 4px;
+    z-index: 0;
+    filter: blur(4px);
+}
+.chessboard {
+    width: 600px;
+    height: 600px;
+    /* padding: 20px; */
+    transform: rotateX(5deg) scaleY(.9);
+    background: url(./imgs/img-1.jpg);
+    background-size: 100% 100%;
+    border-radius: 4px;
+    overflow: hidden;
+    z-index: 5;
+    position: relative;
+}
+.chessboard * {
+    pointer-events: none;
+}
+
+/* 控制栏 */
+.control-bar {
+    width: 800px;
+    height: 40px;
+    position: absolute;
+    top: 20px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+}
+
+
+/* 胜利弹窗 */
+.win-dialog {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 20;
+    background: rgba(0, 0, 0, .5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    display: none;
+}
+.win-dialog__player {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 60px;
+}
+.win-dialog__player div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 100px;
+    position: relative;
+}
+.win-dialog__player div img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 3px solid #fff;
+}
+.win-dialog__player span {
+    font-size: 30px;
+    font-weight: bold;
+    color: #fff;
+    position: relative;
+    display: inline-flex;
+    width: 200px;
+    height: 100px;;
+    align-items: center;
+    justify-content: center;
+}
+.win-dialog__player span::after {
+    content: '失败';
+}
+.win-dialog__player p {
+    position: absolute;
+    background: rgba(255, 255, 255, .8);
+    display: inline-flex;
+    padding: 10px 20px;
+    color: #333;
+    top: -80px;
+    width: 200px;
+    font-size: 20px;
+    display: none;
+    justify-content: center;
+    border-radius: 4px;
+}
+.win-dialog__player div.active {
+
+}
+.win-dialog__player div.active span:after {
+    content: '胜利';
+}
+.win-dialog__player div.active span:before{
+    content: '';
+    display: inline-flex;
+    position: absolute;
+    width: 300px;
+    height: 100px;
+    bottom: -5px;
+    background-image: url(./imgs/img-12.png);
+    transform: scale(.6);
+}
+.win-dialog__player div.active p {
+    display: inline-flex;
+}
+.win-dialog__control {
+
+}
+.win-dialog__control button {
+    padding: 12px 40px;
+    display: inline-flex;
+    border: 1px solid #fff;
+}
